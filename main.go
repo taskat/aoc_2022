@@ -21,7 +21,7 @@ func getInput(cfg *config.Config) string {
 func getSolver(cfg *config.Config) solver.Solver {
 	switch cfg.GetDay() {
 	case 1:
-		return &day1.Day1{}
+		return &day1.Solver{}
 	default:
 		panic("Day not implemented yet")
 	}
