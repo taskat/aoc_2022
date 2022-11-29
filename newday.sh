@@ -11,15 +11,23 @@ add_input() {
     cd ../..;
 }
 
-
 create_package() {
     cd days;
     NAME="day$((CURRENT + 1))";
     mkdir $NAME;
     cd $NAME;
-    FILE="$NAME.go"
+    FILE="solver.go"
     cp ../../raw/raw.go $FILE;
     sed -i "s/_raw_/$NAME/g" $FILE;
+    cd ../..;
+}
+
+add_test() {
+    cd days/$NAME;
+    FILE="solver_test.go"
+    cp ../../raw/raw_test.go $FILE;
+    sed -i "s/_raw_/$NAME/g" $FILE;
+    sed -i "s/var day = 0/var day = $((CURRENT + 1))/g" $FILE;
     cd ../..;
 }
 
@@ -41,6 +49,7 @@ use_solver() {
 
 add_input;
 create_package;
+add_test;
 add_import;
 use_solver;
 echo "Succesfully created new day";
