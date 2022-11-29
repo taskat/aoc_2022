@@ -2,20 +2,20 @@ package config
 
 import "strconv"
 
-type input struct {
+type Input struct {
 	real bool
 	test int
 }
 
-func newRealData() *input {
-	return &input{real: true}
+func NewRealInput() *Input {
+	return &Input{real: true}
 }
 
-func newTestData(test int) *input {
-	return &input{test: test}
+func NewTestInput(test int) *Input {
+	return &Input{test: test}
 }
 
-func (i *input) String() string {
+func (i *Input) String() string {
 	if i.real {
 		return ""
 	} else {

@@ -8,16 +8,6 @@ import (
 	"os"
 )
 
-func getInput(cfg *config.Config) string {
-	fileName := cfg.GetInputFilename()
-	data, err := os.ReadFile(fileName)
-	if err != nil {
-		fmt.Println("Error reading input file:", err)
-		os.Exit(1)
-	}
-	return string(data)
-}
-
 func getSolver(cfg *config.Config) solver.Solver {
 	switch cfg.GetDay() {
 	case 1:
@@ -41,8 +31,8 @@ func main() {
 	if cfg == nil {
 		os.Exit(1)
 	}
-	input := getInput(cfg)
-	fmt.Printf("Start solving day %d, part %d with %s input...\n", cfg.GetDay(), cfg.GetPart(), cfg.GetInput())
+	input := cfg.GetInputData()
+	fmt.Printf("Start solving day %d, part %d with %s input...\n", cfg.GetDay(), cfg.GetPart(), cfg.GetInputType())
 	solution := solve(cfg, input)
 	fmt.Printf("Solved! Solution is: %s\n", solution)
 }

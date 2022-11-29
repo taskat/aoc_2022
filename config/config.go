@@ -10,11 +10,11 @@ import (
 type Config struct {
 	day int
 	part int
-	data input
+	data Input
 	extraParams []any
 }
 
-func newConfig(day int, part int, data input, extraParams ...any) *Config {
+func NewConfig(day int, part int, data Input, extraParams ...any) *Config {
 	return &Config{day, part, data, extraParams}
 }
 
@@ -29,7 +29,7 @@ func ParseConfig() *Config {
 	flag.StringVar(&inputData, "input", "real", "the input data to use")
 	flag.Parse()
 	fmt.Println(os.Args)
-	var data input
+	var data Input
 	if day < 1 || day > 25 {
 		fmt.Println("Day must be between 1 and 25")
 	}
@@ -38,14 +38,14 @@ func ParseConfig() *Config {
 		return nil
 	}
 	if inputData == "real" {
-		data = *newRealData()
+		data = *NewRealInput()
 	} else {
 		testNumber, err := strconv.Atoi(inputData)
 		if err != nil {
 			fmt.Println("Input must be either 'real' or a number")
 			return nil
 		} else {
-			data = *newTestData(testNumber)
+			data = *NewTestInput(testNumber)
 		}
 	}
 	args := flag.Args()
@@ -53,7 +53,7 @@ func ParseConfig() *Config {
 	for i, arg := range args {
 		extraParams[i] = arg
 	}
-	return newConfig(day, part, data, extraParams...)
+	return NewConfig(day, part, data, extraParams...)
 }
 
 func (c *Config) GetDay() int {
@@ -64,7 +64,7 @@ func (c *Config) GetExtraParams() []any {
 	return c.extraParams
 }
 
-func (c *Config) GetInput() string {
+func (c *Config) GetInputType() string {
 	if c.data.real {
 		return "real"
 	} else {
@@ -72,10 +72,20 @@ func (c *Config) GetInput() string {
 	}
 }
 
+func (c *Config) GetInputData() string {
+	fileName := c.getInputFilename()
+	data, err := os.ReadFile(fileName)
+	if err != nil {
+		fmt.Println("Error reading input file:", err)
+		os.Exit(1)
+	}
+	return string(data)
+}
+
 func (c *Config) GetPart() int {
 	return c.part
 }
 
-func (c *Config) GetInputFilename() string {
+func (c *Config) getInputFilename() string {
 	return fmt.Sprintf("inputs/day%d/data%s.txt", c.day, c.data.String())
 }
