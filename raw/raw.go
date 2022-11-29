@@ -1,4 +1,4 @@
-package raw
+package _raw_
 
 type Solver struct {}
 
