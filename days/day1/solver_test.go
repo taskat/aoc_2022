@@ -18,8 +18,8 @@ func TestSolvePart1(t *testing.T) {
 		extraParams []any
 		expectedValue string
 	}{
-		{"Test 1", *config.NewTestInput(1), nil, "7"},
-		{"Real", *config.NewRealInput(), nil, "1393"},
+		{"Test 1", *config.NewTestInput(1), nil, ""},
+		{"Real", *config.NewRealInput(), nil, ""},
 	}
 	fmt.Println(os.Args)
 	for _, tc := range testCases {
@@ -39,8 +39,8 @@ func TestSolvePart2(t *testing.T) {
 		extraParams []any
 		expectedValue string
 	}{
-		{"Test 1", *config.NewTestInput(1), nil, "5"},
-		{"Real", *config.NewRealInput(), nil, "1359"},
+		{"Test 1", *config.NewTestInput(1), nil, ""},
+		{"Real", *config.NewRealInput(), nil, ""},
 	}
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
