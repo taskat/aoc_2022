@@ -8,7 +8,15 @@ import (
 	"os"
 )
 
-func getSolver(cfg *config.Config) solver.Solver {
+type Config interface {
+	GetDay() int
+	GetPart() int
+	GetInputType() string
+	GetInputData() string
+	GetExtraParams() []interface{}
+}
+
+func getSolver(cfg Config) solver.Solver {
 	switch cfg.GetDay() {
 	case 1:
 		return &day1.Solver{}
@@ -17,7 +25,7 @@ func getSolver(cfg *config.Config) solver.Solver {
 	}
 }
 
-func solve(cfg *config.Config, input string) string {
+func solve(cfg Config, input string) string {
 	solver := getSolver(cfg)
 	if cfg.GetPart() == 1 {
 		return solver.SolvePart1(input, cfg.GetExtraParams()...)

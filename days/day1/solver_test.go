@@ -1,12 +1,15 @@
-package _raw_
+package day1
 
 import (
 	"aoc_2022/config"
+	"fmt"
+	"os"
 	"testing"
+
 	"github.com/stretchr/testify/assert"
 )
 
-var day = 0
+var day = 1
 
 func TestSolvePart1(t *testing.T) {
 	testCases := []struct {
@@ -15,9 +18,10 @@ func TestSolvePart1(t *testing.T) {
 		extraParams []any
 		expectedValue string
 	}{
-		{"Test 1", *config.NewTestInput(1), nil, ""},
-		{"Real", *config.NewRealInput(), nil, ""},
+		{"Test 1", *config.NewTestInput(1), nil, "7"},
+		{"Real", *config.NewRealInput(), nil, "1393"},
 	}
+	fmt.Println(os.Args)
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
 			solver := &Solver{}
@@ -35,8 +39,8 @@ func TestSolvePart2(t *testing.T) {
 		extraParams []any
 		expectedValue string
 	}{
-		{"Test 1", *config.NewTestInput(1), nil, ""},
-		{"Real", *config.NewRealInput(), nil, ""},
+		{"Test 1", *config.NewTestInput(1), nil, "5"},
+		{"Real", *config.NewRealInput(), nil, "1359"},
 	}
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {

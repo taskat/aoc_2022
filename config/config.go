@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"path/filepath"
 	"strconv"
 )
 
@@ -74,6 +75,8 @@ func (c *Config) GetInputType() string {
 
 func (c *Config) GetInputData() string {
 	fileName := c.getInputFilename()
+	fileName, _ = filepath.Abs(fileName)
+	fmt.Println(fileName)
 	data, err := os.ReadFile(fileName)
 	if err != nil {
 		fmt.Println("Error reading input file:", err)
@@ -88,4 +91,28 @@ func (c *Config) GetPart() int {
 
 func (c *Config) getInputFilename() string {
 	return fmt.Sprintf("inputs/day%d/data%s.txt", c.day, c.data.String())
+}
+
+type ConfigForTest struct {
+	Config
+}
+
+func NewConfigForTest(c *Config) *ConfigForTest {
+	return &ConfigForTest{*c}
+}
+
+func (c *ConfigForTest) GetInputData() string {
+	fileName := c.getInputFilename()
+	fileName, _ = filepath.Abs(fileName)
+	fmt.Println(fileName)
+	data, err := os.ReadFile(fileName)
+	if err != nil {
+		fmt.Println("Error reading input file:", err)
+		os.Exit(1)
+	}
+	return string(data)
+}
+
+func (c *ConfigForTest) getInputFilename() string {
+	return fmt.Sprintf("../../inputs/day%d/data%s.txt", c.day, c.data.String())
 }
