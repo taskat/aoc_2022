@@ -127,26 +127,6 @@ func mergeRanges(ranges []intRange) []intRange {
 	return ranges
 }
 
-func findFullRange(pairs []pair) intRange {
-	from := pairs[0].sensor.x
-	to := from
-	for _, p := range pairs {
-		if p.sensor.x < from {
-			from = p.sensor.x
-		}
-		if p.sensor.x > to {
-			to = p.sensor.x
-		}
-		if p.beacon.x < from {
-			from = p.beacon.x
-		}
-		if p.beacon.x > to {
-			to = p.beacon.x
-		}
-	}
-	return intRange{from, to + 1}
-}
-
 func getRanges(pairs []pair, lineY int) []intRange {
 	ranges := make([]intRange, len(pairs))
 	for i, p := range pairs {
