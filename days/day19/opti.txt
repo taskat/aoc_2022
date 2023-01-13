@@ -1,0 +1,10 @@
+no opti: 43973858, 6.8445757s
+robots max number: 24239279, 4.043324s
+last minute only collect: 7368377, 1.2690306s
+second to last only geode: 3832566, 785.5488ms
+upperbound: 2273891, 672.105ms
+reordered resources: 2273768, 576.7997ms
+do not build robot if it was possible previusly: 69854,  35.7678ms
+====== minutes 20 -> 24 ======
+865106,  462.1199ms
+only wait if it makes possible sg else to build: 297782,  187.784ms
