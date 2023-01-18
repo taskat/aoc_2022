@@ -26,6 +26,7 @@ import (
 	"aoc_2022/days/day22"
 	"aoc_2022/days/day23"
 	"aoc_2022/days/day24"
+	"aoc_2022/days/day25"
 	"aoc_2022/solver"
 	"fmt"
 	"os"
@@ -89,6 +90,8 @@ func getSolver(cfg Config) solver.Solver {
 		return &day23.Solver{}
 	case 24:
 		return &day24.Solver{}
+	case 25:
+		return &day25.Solver{}
 	default:
 		panic("Day not implemented yet")
 	}
